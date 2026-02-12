@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "reset": "rm -rf node_modules .next build out && npm install"
   },
   "dependencies": {
     "next": "16.1.6",
