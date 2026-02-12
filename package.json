@@ -9,7 +9,8 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
-    "reset": "rm -rf node_modules .next build out && npm install"
+    "reset": "rm -rf node_modules .next build out && npm install",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "16.1.6",
@@ -25,6 +26,7 @@
     "@typescript-eslint/parser": "^8.55.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "husky": "^9.1.7",
     "prettier": "3.8.1",
     "tailwindcss": "^4",
     "typescript": "^5"
