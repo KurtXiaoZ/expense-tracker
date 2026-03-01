@@ -6,7 +6,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-background-primary text-foreground-primary not-disabled:hover:bg-background-primary-hover',
+        default:
+          'bg-background-primary text-foreground-primary not-disabled:hover:bg-background-primary-hover',
       },
       size: {
         default:
@@ -29,9 +30,10 @@ function Button({
   loading = false,
   children,
   ...props
-}: React.ComponentProps<'button'> & VariantProps<typeof buttonVariants> & {
-  loading?: boolean;
-}) {
+}: React.ComponentProps<'button'> &
+  VariantProps<typeof buttonVariants> & {
+    loading?: boolean;
+  }) {
   return (
     <button
       data-slot="button"
@@ -41,9 +43,11 @@ function Button({
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     >
-                                                                                                                           
-      {loading ? <span className="animate-spin size-4 border-2 border-current border-t-transparent rounded-full" /> :        
-         children} 
+      {loading ? (
+        <span className="animate-spin size-4 border-2 border-current border-t-transparent rounded-full" />
+      ) : (
+        children
+      )}
     </button>
   );
 }
