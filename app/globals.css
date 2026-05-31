@@ -4,4 +4,8 @@
   --color-background-primary: #123456;
   --color-background-primary-hover: #1e4d7a;
   --color-foreground-primary: #ffffff;
+  --color-neutral: #cfcfcf;
+  --color-neutral-hover: #b9b4ac;
+  --color-selected: #8e877d;
+  --color-shadow: #ebeae5;
 }
