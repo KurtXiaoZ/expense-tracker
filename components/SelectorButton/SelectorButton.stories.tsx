@@ -7,7 +7,7 @@ const meta: Meta<typeof SelectorButton> = {
   title: 'Components/SelectorButton',
   component: SelectorButton,
   argTypes: {
-    icon: { control: false },
+    children: { control: false },
     label: { control: 'text' },
     selected: { control: 'boolean' },
   },
@@ -84,7 +84,7 @@ function MultiSelectSelectorButtonRow(
 
 export const Default: Story = {
   args: {
-    icon: <HouseIcon className="size-5" />,
+    children: <HouseIcon className="size-5" />,
     label: 'Home',
     selected: false,
   },
@@ -93,7 +93,7 @@ export const Default: Story = {
 
 export const Row: Story = {
   args: {
-    icon: <HouseIcon className="size-5" />,
+    children: <HouseIcon className="size-5" />,
     label: 'Home',
   },
   render: (args) => <SelectorButtonRow {...args} />,
@@ -101,7 +101,7 @@ export const Row: Story = {
 
 export const MultiSelectRow: Story = {
   args: {
-    icon: <HouseIcon className="size-5" />,
+    children: <HouseIcon className="size-5" />,
     label: 'Home',
   },
   render: (args) => <MultiSelectSelectorButtonRow {...args} />,

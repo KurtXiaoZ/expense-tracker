@@ -1,17 +1,13 @@
 import { cn } from '@/lib/utils';
 
-type SelectorButtonProps = Omit<
-  React.ComponentPropsWithoutRef<'button'>,
-  'children'
-> & {
-  icon: React.ReactNode;
+type SelectorButtonProps = React.ComponentPropsWithoutRef<'button'> & {
   label: string;
   selected?: boolean;
 };
 
 export const SelectorButton = ({
+  children,
   className,
-  icon,
   label,
   selected,
   type = 'button',
@@ -41,7 +37,7 @@ export const SelectorButton = ({
           'rounded-lg bg-foreground-primary text-[#736E64]',
         )}
       >
-        {icon}
+        {children}
       </span>
     </button>
   );
