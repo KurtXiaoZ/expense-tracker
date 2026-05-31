@@ -21,6 +21,8 @@ Common types:
 
 Before committing, inspect recent git history and match the existing title style.
 
+When asked to create a git commit, propose the commit title first and get explicit human confirmation before running `git commit`.
+
 Examples:
 
 - `feat: add selector button component`
