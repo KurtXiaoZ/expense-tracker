@@ -26,3 +26,16 @@ Examples:
 - `feat: add selector button component`
 - `fix: preserve selector button selected state`
 - `chore: update husky pre-commit hook`
+
+## Class Names
+
+When a `className` string gets too long to read comfortably, break it into multiple lines using the `cn` utility from `@/lib/utils`.
+
+Group classes by purpose so the styling remains easy to scan. Prefer groups such as:
+
+- sizing and layout
+- spacing
+- border and surface styles
+- typography and icon color
+- transitions and animation
+- interaction states such as hover, active, focus, disabled, and selected
