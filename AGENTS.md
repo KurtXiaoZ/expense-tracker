@@ -29,16 +29,6 @@ Examples:
 - `fix: preserve selector button selected state`
 - `chore: update husky pre-commit hook`
 
-## Validation
-
-Do not run `npm run lint` by default after every change.
-
-Choose validation based on the risk and type of change:
-
-- For documentation-only changes, inspect the diff instead of running lint.
-- For narrow code changes, run the most relevant targeted check.
-- For broad code changes, shared behavior changes, or pre-commit confidence, run the broader validation command that best matches the work.
-
 ## Class Names
 
 When a `className` string gets too long to read comfortably, break it into multiple lines using the `cn` utility from `@/lib/utils`.
