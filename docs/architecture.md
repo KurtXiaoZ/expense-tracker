@@ -17,6 +17,7 @@ Recommended stack:
 - Prisma for schema, migrations, and typed database access
 - Zod for validating procedure inputs
 - Auth.js with Google OAuth for authentication
+- Vercel for production deployment
 
 ## Data Flow
 
@@ -108,6 +109,24 @@ https://your-app.vercel.app
 Authorized redirect URIs:
 https://your-app.vercel.app/api/auth/callback/google
 ```
+
+## Deployment Direction
+
+Deploy the app on Vercel. Vercel should build from the GitHub `main` branch and run the Next.js app with the default Node.js runtime for server-side code.
+
+Production environment variables:
+
+```txt
+AUTH_SECRET
+AUTH_GOOGLE_ID
+AUTH_GOOGLE_SECRET
+DATABASE_URL
+DIRECT_URL
+```
+
+Use the pooled Neon connection string for `DATABASE_URL` and the direct Neon connection string for `DIRECT_URL`. Prisma CLI commands should use `DIRECT_URL`; runtime database access should use `DATABASE_URL`.
+
+Do not put Prisma database access inside `proxy.ts`. Keep database reads and writes in server modules, route handlers, tRPC procedures, or Server Components that run in the Node.js runtime.
 
 ## Database Direction
 
