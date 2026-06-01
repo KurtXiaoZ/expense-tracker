@@ -16,7 +16,7 @@ Recommended stack:
 - Postgres as the primary database
 - Prisma for schema, migrations, and typed database access
 - Zod for validating procedure inputs
-- An auth provider such as Clerk, Supabase Auth, or Auth.js
+- Auth.js with Google OAuth for authentication
 
 ## Data Flow
 
@@ -27,7 +27,7 @@ Client component
   -> tRPC query or mutation
     -> server router procedure
       -> validate input with Zod
-      -> check auth and user ownership
+      -> check Auth.js session and user ownership
       -> read or write Postgres through Prisma
   -> TanStack Query updates or invalidates cached data
 ```
@@ -63,8 +63,51 @@ Guidelines:
 - Put shared Zod schemas in `lib/validations`.
 - Keep database access inside server code.
 - Scope every user-owned query by `userId`.
+- Get the current user from the Auth.js session before reading or mutating user-owned data.
 - Keep UI state and API state separate.
 - Do not put UI-specific behavior in tRPC routers.
+
+## Authentication Direction
+
+Use Auth.js with Google OAuth. This keeps password handling out of the app and lets the project focus on expense-tracking workflows.
+
+Current auth files:
+
+```txt
+auth.ts
+proxy.ts
+app/api/auth/[...nextauth]/route.ts
+```
+
+Auth flow:
+
+```txt
+User clicks "Sign in with Google"
+  -> Auth.js redirects to Google OAuth
+  -> Google returns to /api/auth/callback/google
+  -> Auth.js creates a session
+  -> app reads the current user with auth()
+```
+
+Because this is a private app for a small known user set, restrict access by email in the Auth.js configuration before adding real expense data. Only the approved Google accounts should be allowed to sign in.
+
+Required environment variables:
+
+```txt
+AUTH_SECRET
+AUTH_GOOGLE_ID
+AUTH_GOOGLE_SECRET
+```
+
+When deploying to Vercel, add the production app URL to the Google OAuth client:
+
+```txt
+Authorized JavaScript origins:
+https://your-app.vercel.app
+
+Authorized redirect URIs:
+https://your-app.vercel.app/api/auth/callback/google
+```
 
 ## Database Direction
 
