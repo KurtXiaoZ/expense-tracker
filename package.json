@@ -9,6 +9,7 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
+    "postinstall": "prisma generate",
     "reset": "rm -rf node_modules .next build out && npm install",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
