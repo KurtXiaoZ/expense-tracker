@@ -1,3 +1,9 @@
 npm run lint:fix
 npm run format
 git update-index --again
+
+if git diff --cached --name-only | grep -q "prisma/schema.prisma"; then
+  echo "schema.prisma changed — running Prisma migration..."
+  npx prisma migrate dev
+  git add prisma/migrations
+fi
