@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { AuthProvider } from '@/components/AuthProvider';
 import { Sidebar } from '@/components/Sidebar/Sidebar';
+import { cn } from '@/lib/utils';
+import { Profile } from '@/components/Profile/Profile';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,10 +18,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>
-          <Sidebar />
-          {children}
-        </AuthProvider>
+        <div
+          className={cn(
+            'fixed left-16 top-0 z-50 flex h-full flex-col items-center',
+            'py-16',
+          )}
+        >
+          <Sidebar className="flex-1" />
+          <AuthProvider>
+            <Profile />
+          </AuthProvider>
+        </div>
+        {children}
       </body>
     </html>
   );

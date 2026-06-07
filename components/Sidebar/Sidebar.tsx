@@ -1,34 +1,32 @@
-import { auth } from '@/auth';
 import { cn } from '@/lib/utils';
-
 import { GoalIcon } from '../icons/GoalIcon';
 import { LedgerIcon } from '../icons/LedgerIcon';
 import { PlusIcon } from '../icons/PlusIcon';
-import { SidebarIconLink } from './SidebarIconLink';
-import { SidebarProfileButton } from './SidebarProfileButton';
+import { Button } from '../Button/Button';
+import Link from 'next/link';
 
-export const Sidebar = async () => {
-  const session = await auth();
+type SidebarProps = {
+  className?: string;
+};
 
+export const Sidebar = async ({ className }: SidebarProps) => {
   return (
-    <div
-      className={cn(
-        'fixed left-16 top-0 z-50 flex h-full flex-col items-center',
-        'py-16',
-      )}
-    >
-      <nav className="flex flex-1 flex-col justify-center gap-3">
-        <SidebarIconLink href="/new" label="New Expense">
+    <nav className={cn('flex flex-col justify-center gap-3 w-14', className)}>
+      <Button className="h-14" label="New Expense">
+        <Link href="/new">
           <PlusIcon />
-        </SidebarIconLink>
-        <SidebarIconLink href="/ledger" label="Ledger">
+        </Link>
+      </Button>
+      <Button className="h-14" label="Ledger">
+        <Link href="/ledger">
           <LedgerIcon />
-        </SidebarIconLink>
-        <SidebarIconLink href="/goals" label="Goals">
+        </Link>
+      </Button>
+      <Button className="h-14" label="Goals">
+        <Link href="/goals">
           <GoalIcon />
-        </SidebarIconLink>
-      </nav>
-      <SidebarProfileButton session={session} />
-    </div>
+        </Link>
+      </Button>
+    </nav>
   );
 };

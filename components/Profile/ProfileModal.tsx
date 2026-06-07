@@ -4,29 +4,28 @@ import type { Session } from 'next-auth';
 import { signIn, signOut } from 'next-auth/react';
 import { useState } from 'react';
 
-import { cn } from '@/lib/utils';
-
 import { ProfileIcon } from '../icons/ProfileIcon';
-import { SidebarIconButton } from './SidebarIconButton';
+import { Button } from '../Button/Button';
 
-type SidebarProfileButtonProps = {
+type ProfileModalProps = {
   session: Session | null;
 };
 
-export function SidebarProfileButton({ session }: SidebarProfileButtonProps) {
+export function ProfileModal({ session }: ProfileModalProps) {
   const isLoggedIn = Boolean(session?.user);
   const [isOpen, setIsOpen] = useState(isLoggedIn ? false : true);
 
   return (
     <>
-      <SidebarIconButton
+      <Button
         label="Open profile"
         onClick={() => {
           setIsOpen(true);
         }}
+        className="h-14 w-14"
       >
         <ProfileIcon />
-      </SidebarIconButton>
+      </Button>
 
       {isOpen ? (
         <div
@@ -47,31 +46,23 @@ export function SidebarProfileButton({ session }: SidebarProfileButtonProps) {
                   : 'Sign in with Google OAuth.'}
               </p>
               {isLoggedIn ? (
-                <button
-                  type="button"
+                <Button
+                  label="Sign out"
                   onClick={() => {
                     signOut().then(() => setIsOpen(false));
                   }}
-                  className={cn(
-                    'h-11 w-full rounded-md border border-zinc-300 px-4',
-                    'text-sm font-medium text-zinc-950',
-                    'cursor-pointer transition-colors hover:bg-zinc-100',
-                  )}
+                  className="h-11"
                 >
                   Sign out
-                </button>
+                </Button>
               ) : (
-                <button
-                  type="button"
-                  className={cn(
-                    'h-11 w-full rounded-md bg-zinc-950 px-4',
-                    'text-sm font-medium text-white',
-                    'cursor-pointer transition-colors hover:bg-zinc-800',
-                  )}
+                <Button
+                  label="Sign in with Google"
                   onClick={() => signIn('google')}
+                  className="h-11"
                 >
                   Sign in with Google
-                </button>
+                </Button>
               )}
             </section>
           </div>
