@@ -28,6 +28,12 @@ export const SignedOut: Story = {
       ).toBeVisible();
       await expect(canvas.getByText('Sign in with Google')).toBeVisible();
     });
+
+    await step('Keep modal open after outside click', async () => {
+      const dialog = canvas.getByRole('dialog', { name: 'Profile' });
+      await userEvent.click(dialog);
+      await expect(dialog).toBeVisible();
+    });
   },
 };
 
@@ -70,6 +76,13 @@ export const SignedIn: Story = {
       await expect(
         canvas.getByRole('button', { name: 'Sign out' }),
       ).toBeVisible();
+    });
+
+    await step('Close modal after outside click', async () => {
+      await userEvent.click(canvas.getByRole('dialog', { name: 'Profile' }));
+      await expect(
+        canvas.queryByRole('dialog', { name: 'Profile' }),
+      ).not.toBeInTheDocument();
     });
   },
 };
