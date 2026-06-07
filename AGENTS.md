@@ -41,3 +41,7 @@ Group classes by purpose so the styling remains easy to scan. Prefer groups such
 - typography and icon color
 - transitions and animation
 - interaction states such as hover, active, focus, disabled, and selected
+
+## Storybook Tests
+
+When writing Storybook interaction tests, use named `step` blocks for distinct setup, interaction, and assertion phases so test output stays easy to understand.
