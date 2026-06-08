@@ -13,7 +13,8 @@
     "reset": "rm -rf node_modules .next build out && npm install",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest run"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.2",
