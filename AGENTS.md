@@ -45,3 +45,9 @@ Group classes by purpose so the styling remains easy to scan. Prefer groups such
 ## Storybook Tests
 
 When writing Storybook interaction tests, use named `step` blocks for distinct setup, interaction, and assertion phases so test output stays easy to understand.
+
+## Functional Tests
+
+When writing functional tests, group statements into named `step` blocks when it helps separate setup, interaction, and assertion phases.
+
+Do not run `npm run test:ft` after making code changes unless the user explicitly asks you to run it.
