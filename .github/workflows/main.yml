@@ -35,3 +35,8 @@ jobs:
 
       - name: Functional tests
         run: npm run test:ft
+        env:
+          AUTH_SECRET: ci-functional-test-secret
+          AUTH_GOOGLE_ID: ci-google-client-id
+          AUTH_GOOGLE_SECRET: ci-google-client-secret
+          DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
